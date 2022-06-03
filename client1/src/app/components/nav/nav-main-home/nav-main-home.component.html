@@ -1,0 +1,48 @@
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-color">
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        <label class='text-md-italic mb-2'>{{brand}}</label>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" 
+               aria-current="page"
+               [routerLinkActiveOptions]="{exact:true}" 
+               routerLinkActive="active"
+              [routerLink]="['products']">
+              <label class="text-sm">
+                <i class="pi pi-home"></i>
+              </label>
+            </a>
+          </li>  
+        </ul>
+        <label class="d-flex">
+          <a class="nav-link" 
+             [routerLink]="['cart']"> 
+            <i class="pi pi-shopping-cart" id="cart">
+              <div *ngIf="displayBadge" pBadge value="2" id="badge" ></div>
+            </i>
+          </a>
+        </label>
+        <label class="d-flex">
+          <p-splitButton  
+                         icon="pi pi-users" 
+                         [model]="items" 
+                         styleClass="p-button-text p-button-secondary p-mr-2 p-mb-2">
+            </p-splitButton>
+        </label>
+        <label class="d-flex">
+            <button class="btn btn-light btn-sm" 
+                    type="submit"
+                     (click)="logout()">
+               <label class="text-xs">Logout</label>
+            </button>
+        </label>
+      </div>
+    </div>
+  </nav>

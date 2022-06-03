@@ -1,0 +1,45 @@
+<div class="container my-5">
+    <div class="card text-sm">
+        <div class="card-body">
+            <div class="card-title text-center bg-color">
+                <label style="margin-top: 10px;">Enter username and password</label>
+            </div>
+
+            <form (ngSubmit)="login()" #f="ngForm" name="form" novalidate>
+
+                <div class="card-text">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" 
+                                   class="form-control form-control-sm text-sm" 
+                                   name="username"
+                                   [(ngModel)]="user.username"
+                                   placeholder="username" 
+                                   autofocus>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            <input type="password" 
+                                class="form-control form-control-sm text-sm" 
+                                name="password"
+                                [(ngModel)]="user.password"
+                                placeholder="password" required>
+                        </div>
+                        <a href="#" class="forgot-password" [routerLink]="['forget']">forgot password</a>
+                    </div>
+                </div>
+
+                <button class="btn btn-warning btn-sm my-2" type="submit">Log In
+                </button>
+                
+                <div class="border-color" *ngIf="isBusy">
+                    <label class="mx-2 text-sm">Signing in. Please wait...</label>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<p-toast position="top-left" key="t1"></p-toast>
