@@ -1,0 +1,27 @@
+
+.dropdown,
+label,
+input[type='email'],
+input[type='text'] {
+    width: 300px;
+    height: 30px;
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+.password {
+    width: 300px;
+    height: 30px;
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+.error {
+    color: tomato;
+    font-size: 12px;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}

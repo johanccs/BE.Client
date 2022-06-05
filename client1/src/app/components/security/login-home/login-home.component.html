@@ -13,7 +13,7 @@
                             <input type="text" 
                                    class="form-control form-control-sm text-sm" 
                                    name="username"
-                                   [(ngModel)]="user.username"
+                                   [(ngModel)]="user.email"
                                    placeholder="username" 
                                    autofocus>
                         </div>
@@ -36,7 +36,6 @@
                 <div class="border-color" *ngIf="isBusy">
                     <label class="mx-2 text-sm">Signing in. Please wait...</label>
                 </div>
-
             </form>
         </div>
     </div>

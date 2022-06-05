@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginViewDto } from 'src/app/models/login-view-dto';
+import { NewUser } from 'src/app/models/newUser';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,9 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  public login(loginDto: LoginViewDto){
-
+  public registerUser(newUser: NewUser){
     const url = `${this.apiUrl}/auth`;
 
-    return this.http.post(url, loginDto);
+    return this.http.post(url, newUser);
   }
-
 }

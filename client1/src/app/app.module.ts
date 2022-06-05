@@ -23,7 +23,9 @@ import { CartComponent } from './components/cart/cart.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { BadgeModule} from 'primeng/badge';
 import { CardModule } from 'primeng/card';
-import {SplitButtonModule} from 'primeng/splitbutton';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { DropdownModule } from 'primeng/dropdown';
+import { PasswordModule } from 'primeng/password';
 
 export function tokenGetter(){
   return localStorage.getItem("token"); 
@@ -56,6 +58,8 @@ export function tokenGetter(){
     BadgeModule,
     CardModule,
     SplitButtonModule,
+    DropdownModule,
+    PasswordModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

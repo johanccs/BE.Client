@@ -24,3 +24,14 @@
     height: 10px;
     margin-left:15px;
 }
+
+.menuItem {
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.menuItem:hover {
+    text-decoration-color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}

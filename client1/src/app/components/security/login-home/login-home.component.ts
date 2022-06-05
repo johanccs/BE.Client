@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { LoginViewDto } from 'src/app/models/login-view-dto';
-import { AuthService } from 'src/app/services/Auths/auth.service';
+import { LoginService } from 'src/app/services/login/login.service';
 
 
 @Component({
@@ -14,12 +14,13 @@ import { AuthService } from 'src/app/services/Auths/auth.service';
 export class LoginHomeComponent implements OnInit {
 
   isBusy:boolean = false;
-  user: LoginViewDto = new LoginViewDto("admin","admin");
+  user: LoginViewDto = new LoginViewDto(0,"johan.ccs@gmail.com","@1Mops4moa");
 
   constructor(
     private router: Router, 
     private messageService: MessageService, 
-    private primengConfig: PrimeNGConfig, private authService: AuthService) { }
+    private primengConfig: PrimeNGConfig,
+    private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
@@ -28,32 +29,33 @@ export class LoginHomeComponent implements OnInit {
   login(){
 
     this.isBusy = true;  
-    this.authService.login(this.user).subscribe(data=>{
+    this.loginService.login(this.user).subscribe(data=>{
     
       const token = (<any>data).token;
       const fullName = (<any>data).name + " " + (<any>data).surname;
       
       if((<any>data).token.length >= 0){
         localStorage.setItem("token", token);
-        localStorage.setItem("user", fullName)
+        localStorage.setItem("user", fullName);
+        localStorage.setItem("userId", (<any>data).userId);
         setTimeout(() => {
           this.showSuccess("Login", "Success. Please wait...");
           this.isBusy = false;
           
-          this.router.navigate(['home']);
+          this.router.navigate(['products']);
         }, 2000);
       }else{
         this.showError("Login error", "Invaid user or password");
         setTimeout(()=> {
           this.isBusy = false;
           this.router.navigate(['login']);
-        },2000);
+        },3000);
       }
     }, err=>{
-      console.log(err);
+      console.log(err.error);
       setTimeout(() => {
         this.isBusy = true;
-        this.showError("Login error", "Oops. An unknown error occurred.");
+        this.showError("Login error", err.error);
         this.router.navigate(['login']);
         this.isBusy = false;
       },2000);

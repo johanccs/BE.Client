@@ -1,58 +1,65 @@
 <div class="container center mt-3" style="width: 80%;">
 
-    <p-card id="card">
-        <div class="border-color mb-2">
-            <div class="text-sm text-center offline my-2">Shopping Cart</div>
-        </div>
-        <div class="border-color">
-            <div class="text-sm text-center offline" *ngIf="isOffline">{{offLineMsg}}</div>
-        </div>
-        <p-table [value]="cartItems">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th class="font-weight-light">Id</th>
-                    <th class="font-weight-light">Name</th>
-                    <th class="font-weight-light">Image</th>
-                    <th class="font-weight-light">Price</th>
-                    <th class="font-weight-light">Quantity</th>
-                    <th class="font-weight-light">Actions</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-cartItem>
-                <tr>
-                    <td class="font-weight-light">{{cartItem.id}}</td>
-                    <td class="font-weight-light">{{cartItem.name}}</td>
-                    <td class="font-weight-light"><img [src]="cartItem.img"/></td>
-                    <td class="font-weight-light">{{cartItem.price}}</td>
-                    <td class="font-weight-light">
-                        <i class="pi pi-plus" (click)="increaseQty(cartItem)"></i>
-                        <input type="text" 
-                               [(ngModel)]="cartItem.qty" 
-                               pInputText class="p-inputtext-sm qty text-center" />
+    <form (ngSubmit)="submit()" #f="ngForm" name="form" novalidate>
+        <p-card id="card">
+            <div class="border-color mb-2">
+                <div class="text-sm text-center offline my-2">Shopping Cart</div>
+            </div>
+            <p-table [value]="cartItems">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="font-weight-light">Name</th>
+                        <th class="font-weight-light">Image</th>
+                        <th class="font-weight-light">Price</th>
+                        <th class="font-weight-light">Quantity</th>
+                        <th class="font-weight-light">Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-cartItem>
+                    <tr>
+                        <td class="font-weight-light">{{cartItem.name}}</td>
+                        <td class="font-weight-light"><img [src]="cartItem.img"/></td>
+                        <td class="font-weight-light">{{cartItem.price}}</td>
+                        <td class="font-weight-light">
+                            <i class="pi pi-plus" (click)="increaseQty(cartItem)"></i>
+                            <input type="text" 
+                                   name="qty"
+                                   [(ngModel)]="cartItem.qty" 
+                                   pInputText class="p-inputtext-sm qty text-center" />
+        
+                            <i class="pi pi-minus" (click)="decreaseQty(cartItem)"></i>
+                        </td>
+                        <td>
+                            <label class="link" (click)="remove(cartItem)">Remove</label>
+                        </td>
+                    </tr>
+                </ng-template>   
+            </p-table>
+        </p-card>
     
-                        <i class="pi pi-minus" (click)="decreaseQty(cartItem)"></i>
-                    </td>
-                    <td>
-                        <label class="link" (click)="remove(cartItem)">Remove</label>
-                    </td>
-                </tr>
-            </ng-template>   
-        </p-table>
-    </p-card>
-
-    <div class="vertical">
-        <div class="row">
-            <div class="col text-sm">Subtotal</div>
-            <div class="col text-sm">{{cartSubTotal | currency : 'R'}}</div>
-        </div>
-        <div class="row">
-            <div class="col text-sm">Vat</div>
-            <div class="col text-sm">{{cartVat | currency : 'R'}}</div>
-        </div>
-        <div class="row">
-            <div class="col text-sm">Total</div>
-            <div class="col text-sm">{{cartTotal | currency : 'R'}}</div>
+        <div class="vertical mt-4">
+            <div class="row my-1">
+                <div class="col text-sm">Subtotal</div>
+                <div class="col text-sm">{{cartSubTotal | currency : 'R'}}</div>
+            </div>
+            <div class="row my-1">
+                <div class="col text-sm">Vat</div>
+                <div class="col text-sm">{{cartVat | currency : 'R'}}</div>
+            </div>
+            <div class="row my-1">
+                <div class="col text-sm">Total</div>
+                <div class="col text-sm">{{cartTotal | currency : 'R'}}</div>
+            </div> 
         </div>
     
-    </div>
+        <button pButton type="submit" 
+            class="p-button-raised my-3"  
+            pTooltip="Pay"
+            style="background-color: #F57C00; border: #F57C00">
+            <i class="pi pi-credit-card mx-2"></i>
+            {{ buttonCaption }}
+        </button>
+    </form>
 </div>
+
+<p-toast position="top-left" key="t1"></p-toast>

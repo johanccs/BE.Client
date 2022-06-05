@@ -9,7 +9,7 @@ export class NavFooterHomeComponent implements OnInit {
 
   year: string;
   user: string;
-  bname: string = 'RCCM';
+  bname: string = 'BETS';
 
   constructor() { }
 

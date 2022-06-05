@@ -16,7 +16,8 @@
                routerLinkActive="active"
               [routerLink]="['products']">
               <label class="text-sm">
-                <i class="pi pi-home"></i>
+                <i class="pi pi-list mx-1"></i>
+                <span class="text-sm menuItem">Products</span>
               </label>
             </a>
           </li>  
@@ -25,16 +26,15 @@
           <a class="nav-link" 
              [routerLink]="['cart']"> 
             <i class="pi pi-shopping-cart" id="cart">
-              <div *ngIf="displayBadge" pBadge value="2" id="badge" ></div>
+              <div *ngIf="displayBadge" pBadge value={{val}} id="badge" ></div>
             </i>
           </a>
         </label>
         <label class="d-flex">
-          <p-splitButton  
-                         icon="pi pi-users" 
-                         [model]="items" 
-                         styleClass="p-button-text p-button-secondary p-mr-2 p-mb-2">
-            </p-splitButton>
+          <a class="nav-link" 
+             [routerLink]="['user']"> 
+            <i class="pi pi-users" id="cart"></i>
+          </a>
         </label>
         <label class="d-flex">
             <button class="btn btn-light btn-sm" 

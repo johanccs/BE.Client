@@ -1,6 +1,7 @@
-export class CartItem {
+export class NewCartItem {
     constructor(
-        public id: number, public productId: number, 
+        public productId: number, public userId: string,
+        public orderNr: string,
         public img: string, public name: string, 
         public qty: number, public price: number){}
 }
