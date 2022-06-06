@@ -14,7 +14,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class LoginHomeComponent implements OnInit {
 
   isBusy:boolean = false;
-  user: LoginViewDto = new LoginViewDto(0,"johan.ccs@gmail.com","@1Mops4moa");
+  user: LoginViewDto = new LoginViewDto(0,"","");
 
   constructor(
     private router: Router, 
