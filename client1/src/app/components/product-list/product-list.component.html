@@ -29,7 +29,7 @@
                                 class="p-button-raised p-button-sm p-button-secondary button"  
                                 pTooltip="Add to cart" 
                                 (click)="addToCart(product)" >
-                            <i class="pi pi-shopping-cart"></i>      
+                            <i class="pi pi-plus"></i>      
                         </button>
                     </div>
                 </td>
@@ -38,10 +38,11 @@
     </p-table>
 
     <button pButton type="button" 
-            class="p-button-raised my-5"  
-            pTooltip="Go to cart" (click)="goToToCart()" 
-            style="background-color: #F57C00; border: #F57C00">
-            Checkout
+    class="p-button-raised my-5"  
+    pTooltip="Go to cart" (click)="goToToCart()" 
+    style="background-color: #F57C00; border: #F57C00">
+    <i class="pi pi-shopping-cart mx-1" id="cart"></i>
+    Cart
     </button>
 </div>
 

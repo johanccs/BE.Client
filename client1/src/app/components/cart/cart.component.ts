@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
   cartSubTotal: number = 0;
   cartVat: number = 0;
   vatRate: number = 0.15;
-  buttonCaption: string = 'Pay';
+  buttonCaption: string = 'Checkout';
 
   constructor(
     private cartService: CartService,
@@ -32,7 +32,7 @@ export class CartComponent implements OnInit {
   {
     this.loadCartItems();
     this.calculateTotal();
-    if (this.cartItems.length === 0) {
+    if (this.cartItems == undefined || this.cartItems.length === 0) {
       this.dataService.setData = 0;
     }
   }
@@ -98,7 +98,7 @@ export class CartComponent implements OnInit {
     this.buttonCaption = 'Please wait...';
     this.addOrderNr();
     this.cartService.Checkout(this.cartItems).subscribe(data => {
-      this.buttonCaption = 'Pay';
+      this.buttonCaption = 'Checkout';
       this.showSuccess('Payment made', 'Payment completed. Email sent');
 
       setTimeout(() => {
