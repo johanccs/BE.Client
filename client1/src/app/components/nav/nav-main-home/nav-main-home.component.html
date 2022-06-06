@@ -24,7 +24,7 @@
         </ul>
         <label class="d-flex">
           <a class="nav-link" 
-             [routerLink]="['cart']"> 
+             (click)="gotoCart()"> 
             <i class="pi pi-shopping-cart" id="cart">
               <div *ngIf="displayBadge" pBadge value={{val}} id="badge" ></div>
             </i>

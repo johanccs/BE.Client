@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { DataService } from 'src/app/Helpers/dataData';
+import { DataService } from 'src/app/Helpers/dataService';
 import { OrderNrGenerator } from 'src/app/Helpers/ordernr-generator';
 import { NewCartItem } from 'src/app/models/new-cartItem';
 import { CartService } from 'src/app/services/cart/cart.service';
@@ -28,12 +28,17 @@ export class CartComponent implements OnInit {
     private dataService: DataService,
     private messageService: MessageService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void
+  {
     this.loadCartItems();
     this.calculateTotal();
+    if (this.cartItems.length === 0) {
+      this.dataService.setData = 0;
+    }
   }
 
-  private loadCartItems(){
+  private loadCartItems()
+  {
     this.cartItems = window.history.state.param;
   }
 

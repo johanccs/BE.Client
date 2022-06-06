@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { DataService } from 'src/app/Helpers/dataData';
+import { DataService } from 'src/app/Helpers/dataService';
+import { InternalCartService } from 'src/app/Helpers/internalCartService';
 import { ListProduct } from 'src/app/models/list-product';
 import { NewCartItem } from 'src/app/models/new-cartItem';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -24,6 +25,7 @@ export class ProductListComponent implements OnInit {
     private router: Router,
     private prodService: ProductService,
     private dataService: DataService,
+    private internCart: InternalCartService,
     private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -44,6 +46,7 @@ export class ProductListComponent implements OnInit {
     this.selectedCartItems.push(cartItem);
     this.offLineMsg = this.selectedCartItems.length.toString();
     this.dataService.setData = this.selectedCartItems.length;
+    this.internCart.setData = cartItem;
   }
 
   goToToCart(){
